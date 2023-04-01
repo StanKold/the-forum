@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.forum.services.PostTagServiceImpTests" tests="11" skipped="0" failures="0" errors="0" timestamp="2023-04-01T10:33:44" hostname="DESKTOP-3INN96D" time="0.083">
+  <properties/>
+  <testcase name="removePostTag_Should_ThrowException_when_UserIsNotCreator()" classname="com.example.forum.services.PostTagServiceImpTests" time="0.036"/>
+  <testcase name="addPostTag_Should_ThrowException_when_UserBlocked()" classname="com.example.forum.services.PostTagServiceImpTests" time="0.003"/>
+  <testcase name="removePostTag_Should_CallRepository_when_UserIsAdmin()" classname="com.example.forum.services.PostTagServiceImpTests" time="0.002"/>
+  <testcase name="addPostTag_Should_ThrowException_when_UserIsNotAdmin()" classname="com.example.forum.services.PostTagServiceImpTests" time="0.002"/>
+  <testcase name="removePostTag_Should_CallRepository_when_UserIsCreator()" classname="com.example.forum.services.PostTagServiceImpTests" time="0.002"/>
+  <testcase name="removePostTag_Should_ThrowException_when_UserIsNotAdmin()" classname="com.example.forum.services.PostTagServiceImpTests" time="0.007"/>
+  <testcase name="removePostTag_Should_ThrowException_when_UserBlocked()" classname="com.example.forum.services.PostTagServiceImpTests" time="0.003"/>
+  <testcase name="getAllTags_Should_CallRepository()" classname="com.example.forum.services.PostTagServiceImpTests" time="0.002"/>
+  <testcase name="addPostTag_Should_CallRepository_when_UserIsAdmin()" classname="com.example.forum.services.PostTagServiceImpTests" time="0.004"/>
+  <testcase name="addPostTag_Should_ThrowException_when_UserIsNotCreator()" classname="com.example.forum.services.PostTagServiceImpTests" time="0.003"/>
+  <testcase name="addPostTag_Should_CallRepository_when_UserIsCreator()" classname="com.example.forum.services.PostTagServiceImpTests" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

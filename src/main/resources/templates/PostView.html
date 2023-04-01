@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="~{fragments::head}">
+</div>
+<body>
+<!-- Navigation-->
+<div th:replace="~{fragments::navbar}">
+</div>
+<!-- Page Header-->
+<header class="masthead77"
+        style="background-image: url('https://gitlab.com/group04lpha/the-forum/-/raw/main/src/main/resources/static/assets/img/logo.jpg')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+                    <h1>The Forum</h1>
+                    <span class="subheading">Independant Man's Place </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content-->
+<div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+            <!-- Post preview-->
+
+            <h2 class="post-title" th:text="${post.title}">title</h2>
+            <h3 class="post-subtitle" th:text="${post.content}">content</h3>
+            <div>
+               <span th:unless="${isAuthor}">
+                <span th:if="${author.avatar_url.trim().equals('none')}">
+                    <img alt="avatar" class="avatar" src="/assets/avatars/no-avatar.png"
+                         th:src="@{/assets/avatars/no-avatar.png}"/>
+                     <span th:text="${post.author}">Author</span>
+                </span>
+                <span th:unless="${author.avatar_url.trim().equals('none')}">
+                    <img alt="avatar" class="avatar" src="/assets/avatars/no-avatar.png"
+                         th:src="${author.getAvatar_url()}"/>
+                     <span th:text="${post.author}">Author</span>
+                </span>
+               </span>
+                <span th:if="${isAuthor}">
+                    <a th:href="@{/posts/{id}/edit(id=${post.id})}">
+                        <button class="buttonSave" th:class="buttonSave"> Edit Post </button>
+                   </a>
+                     <span th:text="#{post.byYou}">created by you</span>
+                </span>
+               <span> | </span>
+                <span th:text="${post.days_old}">days</span> <span> days ago</span>
+                <br>
+                #tags: <span th:text="${post.tagList}">tags</span>
+                <script src="https://use.fontawesome.com/fe459689b4.js"></script>
+                <br>
+                <div th:unless="${isAuthenticated}">
+                    likes : <span th:text="${post.likes}">likes</span>
+                    | dislikes : <span th:text="${post.dislikes}">dislike</span>
+                    | comments : <span th:text="${post.commentsCount}">comments</span>
+                </div>
+                <div th:if="${isAuthenticated}">
+                <a th:href="@{/posts/{id}/like(id=${post.id})}">
+                    <img th:if="${isLiked}"  th:class="img" class="img" src="../static/assets/icons/LikePressed.jpg" th:src="@{/assets/icons/LikePressed.jpg}" alt="pressed"/>
+                    <img th:unless="${isLiked}"  th:class="img" class="img"  src="../static/assets/icons/LikeToPress.jpg" th:src="@{/assets/icons/LikeToPress.jpg}" alt="press"/>
+                </a>
+                likes : <span th:id="demo" th:text="${post.likes}">likes</span>
+                <a th:href="@{/posts/{id}/dislike(id=${post.id})}">
+                <img  th:if="${isDisliked}" th:class="img" class="img" src="../static/assets/icons/DislikePressed.jpg" th:src="@{/assets/icons/DislikePressed.jpg}" alt="pressed"/>
+                <img th:unless="${isDisliked}" th:class="img" class="img" src="../static/assets/icons/DislikeToPress.jpg" th:src="@{/assets/icons/DislikeToPress.jpg}"  alt="press"/>
+                </a>
+                dislikes : <span th:text="${post.dislikes}">dislike</span>
+                <img th:class="img" class="img" src="../static/assets/icons/comment.jpg" th:src="@{/assets/icons/comment.jpg}"  alt="comments"/> comments : <span th:text="${post.commentsCount}">comments</span>
+
+                </div>
+
+                <div th:if="${post.comment.isEmpty()}">
+                    <br>
+                    <h3 class="post-subtitle" th:text="#{posts.label.NoComments}">NoComments</h3>
+                    <hr class="my-4"/>
+                </div>
+
+
+                <div th:unless="${post.comment.isEmpty()}">
+                    <br>
+                    <h3 class="post-subtitle" th:text="#{posts.label.comments}">Comments</h3>
+                    <!-- Divider-->
+                    <hr class="my-4"/>
+                    <div class="post-preview" th:each="comment : ${post.comment}">
+                        <div th:if="${comment.creator.avatar_url.trim().equals('none')}">
+                            <span th:text="${comment.content}">content</span>
+                            <img alt="avatar" class="avatar" src="/assets/avatars/no-avatar.png"
+                                 th:src="@{/assets/avatars/no-avatar.png}"/>
+                            <span th:text="${comment.creator.username}">Author</span>
+                        </div>
+                        <div th:unless="${comment.creator.avatar_url.trim().equals('none')}">
+                            <span th:text="${comment.content}">content</span>
+                            <img alt="avatar" class="avatar" src="/assets/avatars/no-avatar.png"
+                                 th:src="${post.creator.getAvatar_url()}"/>
+                            <span th:text="${comment.creator.username}">Author</span>
+                        </div>
+
+                        <!-- Divider-->
+                        <hr class="my-4"/>
+                    </div>
+                </div>
+            </div>
+
+
+            <div th:if="${isAuthenticated}">
+                <form enctype="multipart/form-data" action="#" th:action="@{/posts/{id}/comment(id=${post.id})}"
+                      th:object="${commentDTO}" method="post">
+                    <hr class="my-4"/>
+                    <label th:text="#{post.add.comment}">Add Comment</label><br>
+                    <textarea class="textarea11" placeholder="type comment here..." th:field="*{content}"
+                              type="text"></textarea>
+                    <label class="error" th:errors="*{content}">Content cannot be empty</label>
+                    <br>
+                    <input class="buttonSave" type="submit" value="Save" th:class="buttonSave">
+                    <br>
+                    <hr class="my-4"/>
+                    <br>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

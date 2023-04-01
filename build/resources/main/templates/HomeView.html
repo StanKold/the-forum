@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="~{fragments::head}">
+</div>
+<body>
+<!-- Navigation-->
+<div th:replace="~{fragments::navbar}">
+</div>
+<!-- Page Header-->
+<header class="masthead77" style="background-image: url('https://gitlab.com/group04lpha/the-forum/-/raw/main/src/main/resources/static/assets/img/logo.jpg')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+                    <h1>The Forum</h1>
+                    <span class="subheading">Independant Man's Place </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Main Content-->
+<div class="container px-4 px-lg-5">
+     <!-- Post preview-->
+
+    <div class="row">
+        <div class="column" style="float:left;width:49%">
+            <h1 th:text="#{mostRecent.title}">Most Recent </h1>
+            <br>
+            <div th:if="${mostRecent.isEmpty()}">
+                <h2 class="post-title" th:text="#{posts.title.empty}">No Post with this parameters</h2>
+            </div>
+            <div th:unless="${mostRecent.isEmpty()}">
+                <div class="post-preview" th:each="post : ${mostRecent}">
+                    <a th:href="@{/posts/{id}(id=${post.id})}">
+                        <h2 class="post-title" th:text="${post.title}">title</h2>
+                        <h3 class="post-subtitle" th:text="${post.content}">content</h3>
+                    </a>
+                    <p class="post-meta">
+                    <div th:if="${post.creator.getAvatar_url().trim().equals('none')}">
+                        <img alt="avatar" class="avatar" src="/assets/avatars/no-avatar.png" th:src="@{/assets/avatars/no-avatar.png}" />
+                        <span th:text="${post.author}">Author</span><span> | </span>
+                        <span th:text="${post.days_old}">days</span> <span> days ago</span>
+                    </div>
+                    <div th:unless="${post.creator.getAvatar_url().trim().equals('none')}">
+                        <img alt="avatar" class="avatar" src="/assets/avatars/no-avatar.png" th:src="${post.creator.getAvatar_url()}" />
+                        <span th:text="${post.author}">Author</span> <span> | </span>
+                        <span th:text="${post.days_old}">days</span> <span> days ago</span>
+                    </div>
+                    <img th:class="img" class="img" src="../static/assets/icons/LikeToPress.jpg" th:src="@{/assets/icons/LikeToPress.jpg}"  alt="likes"/>
+                    likes : <span th:text="${post.likes}">likes</span>
+                    <img th:class="img" class="img" src="../static/assets/icons/DislikeToPress.jpg" th:src="@{/assets/icons/DislikeToPress.jpg}"  alt="dislikes"/>
+                    dislikes : <span th:text="${post.dislikes}">dislike</span>
+                    <img th:class="img" class="img" src="../static/assets/icons/comment.jpg" th:src="@{/assets/icons/comment.jpg}"  alt="comments"/>
+                    comments : <span th:text="${post.commentsCount}">comments</span>
+                    <br/>
+                    #tags: <span th:text="${post.tagList}">tags</span>
+                    <hr class="my-4"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="column" style="float:left; width:49%">
+            <h1 th:text="#{mostCommented.title}">Most Commented</h1>
+            <br>
+            <div th:if="${mostCommented.isEmpty()}">
+                <h2 th:text="#{posts.title.empty}">No Post with this parameters</h2>
+            </div>
+            <div th:unless="${mostCommented.isEmpty()}">
+                <div class="post-preview" th:each="post : ${mostCommented}">
+                    <a th:href="@{/posts/{id}(id=${post.id})}">
+                        <h2 class="post-title" th:text="${post.title}">title</h2>
+                        <h3 class="post-subtitle" th:text="${post.content}">content</h3>
+                    </a>
+                    <p class="post-meta">
+                    <div th:if="${post.creator.getAvatar_url().trim().equals('none')}">
+                        <img alt="avatar" class="avatar" src="/assets/avatars/no-avatar.png" th:src="@{/assets/avatars/no-avatar.png}" />
+                        <span th:text="${post.author}">Author</span><span> | </span>
+                        <span th:text="${post.days_old}">days</span> <span> days ago</span>
+                    </div>
+                    <div th:unless="${post.creator.getAvatar_url().trim().equals('none')}">
+                        <img alt="avatar" class="avatar" src="/assets/avatars/no-avatar.png" th:src="${post.creator.getAvatar_url()}" />
+                        <span th:text="${post.author}">Author</span> <span> | </span>
+                        <span th:text="${post.days_old}">days</span> <span> days ago</span>
+                    </div>
+                    <img th:class="img" class="img" src="../static/assets/icons/LikeToPress.jpg" th:src="@{/assets/icons/LikeToPress.jpg}"  alt="likes"/>
+                    likes : <span th:text="${post.likes}">likes</span>
+                    <img th:class="img" class="img" src="../static/assets/icons/DislikeToPress.jpg" th:src="@{/assets/icons/DislikeToPress.jpg}"  alt="dislikes"/>
+                    dislikes : <span th:text="${post.dislikes}">dislike</span>
+                    <img th:class="img" class="img" src="../static/assets/icons/comment.jpg" th:src="@{/assets/icons/comment.jpg}"  alt="comments"/>
+                    comments : <span th:text="${post.commentsCount}">comments</span>
+                    <br/>
+                    #tags: <span th:text="${post.tagList}">tags</span>
+                    <hr class="my-4"/>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- Footer-->
+<footer class="border-top">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                    <p class="small text-center text-muted fst-italic">
+                        Users : <span th:text="${usersCount}">count</span>
+                        | Posts : <span th:text="${postsCount}">count</span>
+                        | Comments : <span th:text="${commentsCount}">count</span>
+                    </p>
+                <div class="small text-center text-muted fst-italic">Copyright &copy; bg-tati | The Forum | established 2023</div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="/js/scripts.js"></script>
+</body>
+</html>

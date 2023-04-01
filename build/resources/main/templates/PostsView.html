@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments::head">
+</div>
+<body>
+<!-- Navigation-->
+<div  th:replace="fragments::navbar">
+</div>
+<!-- Page Header-->
+<header class="masthead77" style="background-image: url('https://gitlab.com/group04lpha/the-forum/-/raw/main/src/main/resources/static/assets/img/logo.jpg')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+                    <h1>The Forum</h1>
+                    <br>
+                    <br>
+                    <h2>All Posts List </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Main Content-->
+<div class="container px-4 px-lg-5">
+    <div class="center">
+<form action="#" th:action="@{/posts}" method="get" th:object="${postFilterOptions}">
+<br>
+<input type="text" placeholder="contains"  size="20"  th:field="*{contains}" />
+<input type="text" placeholder="tag"  size="10" th:field="*{tag}" />
+<input type="text" placeholder="author"  size="15"  th:field="*{author}"/>
+<select th:field="*{sortBy}">
+    <option value="title">Title</option>
+    <option value="date" >Days old</option>
+    <option value="likes" >Likes</option>
+    <option value="dislikes" >Dislikes</option>
+    <option value="comments" >Comments</option>
+</select>
+<select th:field="*{sortOrder}">
+    <option value="asc" >asc</option>
+    <option value="desc">desc</option>
+</select>
+    <input class="buttonSave" th:class="buttonSave" type="submit" value="Go">
+</form>
+</div>
+</div>
+
+
+
+<br><br>
+<div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+            <!-- Post preview-->
+            <h1 th:text="#{posts.title}"> Posts </h1>
+            <br>
+            <div th:if="${posts.isEmpty()}">
+                <h2 class="post-title" th:text="#{posts.title.empty}">No Post with this parameters</h2>
+            </div>
+            <div th:unless="${posts.isEmpty()}">
+                <div class="post-preview" th:each="post : ${posts}">
+                    <a th:href="@{/posts/{id}(id=${post.id})}">
+                        <h2 class="post-title" th:text="${post.title}">title</h2>
+                        <h3 class="post-subtitle" th:text="${post.content}">content</h3>
+                    </a>
+                    <p class="post-meta">
+                    <div th:if="${post.creator.getAvatar_url().trim().equals('none')}">
+                        <img alt="avatar" class="avatar" src="/assets/avatars/no-avatar.png" th:src="@{/assets/avatars/no-avatar.png}" />
+                        <span th:text="${post.author}">Author</span><span> | </span>
+                        <span th:text="${post.days_old}">days</span> <span> days ago</span>
+                    </div>
+                    <div th:unless="${post.creator.getAvatar_url().trim().equals('none')}">
+                        <img alt="avatar" class="avatar" src="/assets/avatars/no-avatar.png" th:src="${post.creator.getAvatar_url()}" />
+                        <span th:text="${post.author}">Author</span> <span> | </span>
+                        <span th:text="${post.days_old}">days</span> <span> days ago</span>
+                    </div>
+                    likes : <span th:text="${post.likes}">likes</span>
+                    | dislikes : <span th:text="${post.dislikes}">dislike</span>
+                    | comments : <span th:text="${post.commentsCount}">comments</span>
+                    <br/>
+                    #tags: <span th:text="${post.tagList}">tags</span>
+                    <hr class="my-4"/>
+                </div>
+            </div>
+            </div>
+            </div>
+</div>
+</body>
+</html>

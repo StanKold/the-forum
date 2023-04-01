@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="~{fragments::head}">
+</div>
+<body>
+<!-- Navigation-->
+<div  th:replace="~{fragments::navbar}">
+</div>
+<!-- Page Header-->
+<header class="masthead77"
+        style="background-image: url('https://gitlab.com/group04lpha/the-forum/-/raw/main/src/main/resources/static/assets/img/logo.jpg')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+                    <h1>The Forum</h1>
+                    <br>
+                    <br>
+                    <h2>Login page</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Main Content-->
+<div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+        <div th:if="${isAuthenticated}" class="caption2">
+                <p>You are logged successfully!</p>
+                <p th:text="'Hello, ' + ${session.loggedUser}"></p>
+            </div>
+
+
+    <div th:unless="${isAuthenticated}">
+        <form enctype="multipart/form-data" action="#" th:action="@{/auth/login}" th:object="${login}" method="post">
+            <hr class="my-4"/>
+            <label th:text="#{users.label.username}">username</label>
+            <br>
+            <input type="text" th:field="*{username}">
+            <label class="error" th:errors="*{username}">Username errors</label>
+            <hr class="my-4"/>
+            <label th:text="#{users.label.password}">password</label>
+            <br>
+            <input type="password" th:field="*{password}">
+            <label class="error" th:errors="*{password}">Password errors</label>
+            <hr class="my-4"/>
+            <input class="buttonSave" th:class="buttonSave" type="submit" value="Login">
+            <br>
+            <br>
+        </form>
+        <br>
+        <h3>If you do not have account with username and password, you need to REGISTER first.</h3>
+        <br>
+    </div>
+</div>
+</div>
+</div>
+
+<!-- Footer-->
+<footer class="border-top">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="small text-center text-muted fst-italic">Copyright &copy; bg-tati | The Forum | established
+                    2023
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="/js/scripts.js"></script>
+</body>
+</html>

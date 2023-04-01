@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="~{fragments::head}">
+</div>
+<body>
+<!-- Navigation-->
+<div  th:replace="~{fragments::navbar}">
+</div>
+<!-- Page Header-->
+<header class="masthead77"
+        style="background-image: url('https://gitlab.com/group04lpha/the-forum/-/raw/main/src/main/resources/static/assets/img/logo.jpg')">
+  <div class="container position-relative px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-7">
+        <div class="site-heading">
+          <h1>The Forum</h1>
+          <br>
+          <br>
+          <span class="subheading">Edit Post View</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Main Content-->
+<main class="mb-4">
+  <div th:unless="${isAuthenticated}">
+    <div class="container px-4 px-lg-5">
+      <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+          <p> You are not loged/registered and not allowed to create new post</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div th:if="${isAuthenticated}">
+
+    <div class="container px-4 px-lg-5">
+      <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+          <p>Use meaningful and short title for your post, content should describe the problem/situation as
+            good as possible, so you get fast and full responses and comments! </p>
+          <div class="my-5">
+
+
+            <form id="contactForm"  enctype="multipart/form-data" action="#" th:action="@{/posts/{id}/edit(id=${postId})}" th:object="${postDTO}" method="post">
+              <hr class="my-4"/>
+              <label  th:text="#{posts.label.title}">Title</label><br>
+              <input class="textarea10" placeholder="type here..." type="text" th:field="*{title}">
+              <label class="error" th:errors="*{title}">Title cannot be empty</label>
+              <br>
+              <hr class="my-4"/>
+              <label th:text="#{posts.label.Content}">Content</label>
+              <br>
+              <textarea  class="textarea11"  placeholder="type here..." type="text" th:field="*{content}"></textarea>
+              <label  class="error" th:errors="*{content}">Content cannot be empty</label>
+              <br>
+              <hr class="my-4"/>
+              <input class="buttonSave" type="submit" value="Update" th:class="buttonSave">
+              <br>
+              <br>
+            </form>
+
+            <hr class="my-4"/>
+            <hr class="my-4"/>
+            <div  th:each="tag : ${tags}" >
+              <span th:text="${tag}">tag</span><br>
+            </div>
+            <hr class="my-4"/>
+            <hr class="my-4"/>
+          </div>
+          <div th:if="${isAuthenticated}">
+            <form enctype="multipart/form-data" action="#" th:action="@{/posts/{id}/tags(id=${postId})}"
+                  th:object="${TagDto}" method="post">
+              <label th:text="#{post.add.tag}">Add/Remove Tag</label><br>
+              <input class="textarea10" placeholder="type tag here..." type="text"
+                     th:field="*{tag}">
+              <label  class="error" th:errors="*{tag}">Tag cannot be empty</label>
+              <br>
+              <input class="buttonSave" type="submit" value="Save" th:class="buttonSave">
+              <br>
+              <hr class="my-4"/>
+              <br>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+</main>
+</body>
+</html>

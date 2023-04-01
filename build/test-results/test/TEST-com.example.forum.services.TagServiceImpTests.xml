@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.forum.services.TagServiceImpTests" tests="4" skipped="0" failures="0" errors="0" timestamp="2023-04-01T10:33:44" hostname="DESKTOP-3INN96D" time="0.036">
+  <properties/>
+  <testcase name="getTags_CallRepository()" classname="com.example.forum.services.TagServiceImpTests" time="0.027"/>
+  <testcase name="getTagByName_Should_CallRepository()" classname="com.example.forum.services.TagServiceImpTests" time="0.002"/>
+  <testcase name="deleteTag_CallRepository()" classname="com.example.forum.services.TagServiceImpTests" time="0.002"/>
+  <testcase name="getTag_CallRepository()" classname="com.example.forum.services.TagServiceImpTests" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

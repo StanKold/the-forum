@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.forum.services.ReactionServiceImplTests" tests="7" skipped="0" failures="0" errors="0" timestamp="2023-04-01T10:33:44" hostname="DESKTOP-3INN96D" time="0.201">
+  <properties/>
+  <testcase name="addReaction_Should_CallRemove_when_NegativeRaction()" classname="com.example.forum.services.ReactionServiceImplTests" time="0.101"/>
+  <testcase name="getDisliked_CallRepository()" classname="com.example.forum.services.ReactionServiceImplTests" time="0.005"/>
+  <testcase name="getLiked_CallRepository()" classname="com.example.forum.services.ReactionServiceImplTests" time="0.005"/>
+  <testcase name="getReaction_CallRepository()" classname="com.example.forum.services.ReactionServiceImplTests" time="0.003"/>
+  <testcase name="addReaction_Should_CallRemove_when_DuplicateRaction()" classname="com.example.forum.services.ReactionServiceImplTests" time="0.009"/>
+  <testcase name="addReaction_Should_CallAdd_when_RactionUnique()" classname="com.example.forum.services.ReactionServiceImplTests" time="0.014"/>
+  <testcase name="addReaction_Should_ThrowException_when_UserBlocked()" classname="com.example.forum.services.ReactionServiceImplTests" time="0.005"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

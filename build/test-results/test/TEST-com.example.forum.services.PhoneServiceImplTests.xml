@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.forum.services.PhoneServiceImplTests" tests="12" skipped="0" failures="0" errors="0" timestamp="2023-04-01T10:33:44" hostname="DESKTOP-3INN96D" time="0.139">
+  <properties/>
+  <testcase name="addPhone_Should_CallRepository_when_ParametersValid()" classname="com.example.forum.services.PhoneServiceImplTests" time="0.069"/>
+  <testcase name="getPhoneByUser_CallRepository_()" classname="com.example.forum.services.PhoneServiceImplTests" time="0.002"/>
+  <testcase name="updatePhone_Should_ThrowException_when_UserNotAdmin()" classname="com.example.forum.services.PhoneServiceImplTests" time="0.002"/>
+  <testcase name="deletePhone_Should_ThrowException_when_UserNotAdmin()" classname="com.example.forum.services.PhoneServiceImplTests" time="0.005"/>
+  <testcase name="updatePhone_Should_Throw_when_DuplicateExist()" classname="com.example.forum.services.PhoneServiceImplTests" time="0.002"/>
+  <testcase name="addPhone_Should_ThrowException_when_DuplicatePhone()" classname="com.example.forum.services.PhoneServiceImplTests" time="0.003"/>
+  <testcase name="getPhones_CallRepository_()" classname="com.example.forum.services.PhoneServiceImplTests" time="0.002"/>
+  <testcase name="deletePhone_Should_CallRepository_when_ParametersValid()" classname="com.example.forum.services.PhoneServiceImplTests" time="0.008"/>
+  <testcase name="updatePhone_Should_ThrowException_when_DuplicatePhone()" classname="com.example.forum.services.PhoneServiceImplTests" time="0.003"/>
+  <testcase name="getPhone_CallRepository_()" classname="com.example.forum.services.PhoneServiceImplTests" time="0.013"/>
+  <testcase name="addPhone_Should_ThrowException_when_UserNotAdmin()" classname="com.example.forum.services.PhoneServiceImplTests" time="0.01"/>
+  <testcase name="updatePhone_Should_CallRepository_when_ParametersValid()" classname="com.example.forum.services.PhoneServiceImplTests" time="0.004"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

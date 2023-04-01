@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href="../static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+    <title>Admin Portal</title>
+
+</head>
+<body>
+
+<div class="center" th:class="center">
+    <h1 class="center" th:class="center" th:text="'Welcome you Almighty admin, ' + ${session.loggedUser}+' !'">welcome
+        admin</h1>
+    <h1 class="center" th:class="center" th:text="'It is a good day to ban some nasty users!'">welcome admin</h1>
+    <br>
+    <br>
+</div>
+
+<!--collapsible-->
+<button class="collapsible" th:class="collapsible" th:text="#{users.filter.label}">Filter Options USERS</button>
+<div class="content" th:class="content">
+    <!--collapsible-->
+    <form class="center" th:class="center" id="userFilterForm" action="#" th:action="@{/admin-portal}" method="get" th:object="${filterUsers}">
+        <input type="text" placeholder="First name" th:field="*{firstName}"/>
+        <input type="text" placeholder="Username" th:field="*{username}"/>
+        <input type="text" placeholder="Email" th:field="*{email}"/>
+        <select th:field="*{sortBy}">
+            <option value="">Sort By</option>
+            <option value="Name">First Name</option>
+            <option value="Username">Username</option>
+            <option value="Email">Email</option>
+        </select>
+        <select th:field="*{sortOrder}">
+            <option value="">Sort Order</option>
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
+        </select>
+        <input type="submit" value="Search" th:class="buttonSave"/>
+    </form>
+    <br><br>
+    <table id="userTable" class="w3-table-all w3-bordered w3-striped w3-border test w3-hoverable">
+        <thead>
+        <tr>
+            <th>User</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Created On</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${users}">
+            <td>
+                <a href="#" th:href="@{/users/{id}/update(id=${user.getId()})}" th:text="${user.username}">User</a>
+            </td>
+            <td th:text="${user.firstName}">First Name</td>
+            <td th:text="${user.lastName}">Last Name</td>
+            <td th:text="${user.email}">Email</td>
+            <td th:text="${user.createdOn}">Created On</td>
+            <td class="w3-hover-red" th:if="${!user.isBlocked()}">
+                <a href="#" th:href="@{/users/{id}/block(id=${user.getId()})}" th:text="Block">Block</a>
+            </td>
+            <td class="w3-hover-green" th:if="${user.isBlocked()}">
+                <a href="#" th:href="@{/users/{id}/block(id=${user.getId()})}" th:text="Unblock">Unblock</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<br><br>
+<!-- messages-->
+<!--collapsible-->
+<button class="collapsible" th:class="collapsible" th:text="#{message.filter.label}">Filter Options MESSAGES</button>
+<div class="content" th:class="content">
+    <!--collapsible-->
+    <form class="center" th:class="center" id="messageFilterForm" action="#" th:action="@{/admin-portal}" method="get" th:object="${filterMessage}">
+
+        <input type="text" placeholder="name" th:field="*{name}"/>
+        <input type="text" placeholder="message" th:field="*{text}"/>
+        <input type="text" placeholder="e-mail" th:field="*{email}"/>
+        <select th:field="*{sortBy}">
+            <option value="Date">Date</option>
+            <option value="Name">Name</option>
+            <option value="Username">Username</option>
+            <option value="Email">Email</option>
+        </select>
+        <select th:field="*{orderBy}">
+            <option value="">Sort Order</option>
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
+        </select>
+        <input type="submit" value="Search" th:class="buttonSave"/>
+    </form>
+    <br><br>
+    <table id="messageTable" class="w3-table-all w3-bordered w3-striped w3-border test w3-hoverable">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Message</th>
+            <th>Email</th>
+            <th>Created On</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="message : ${messages}">
+            <td th:text="${message.contact_name}">name</td>
+            <td th:text="${message.contact_text}">message</td>
+            <td th:text="${message.contact_email}">Email</td>
+            <td th:text="${message.date}">Created On</td>
+            <td class="w3-hover-red">
+                <a href="#" th:href="@{/message/{id}/delete(id=${message.getContact_id()})}"
+                   th:text="#{contact.delete}">delete</a>
+            <td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<br>
+<br>
+<!--collapsible-->
+<button class="collapsible" th:class="collapsible" th:text="#{posts.filter.label}">Filter Options Posts</button>
+<div class="content" th:class="content">
+    <!--collapsible-->
+    <form class="center" th:class="center" id="postsFilterForm" action="#" th:action="@{/admin-portal}" method="get" th:object="${filterPosts}">
+
+        <input type="text" placeholder="contains" size="20" th:field="*{contains}"/>
+        <input type="text" placeholder="tag" size="10" th:field="*{tag}"/>
+        <input type="text" placeholder="author" size="15" th:field="*{author}"/>
+        <select th:field="*{sortBy}">
+            <option value="title">Title</option>
+            <option value="date">Date</option>
+            <option value="likes">Likes</option>
+            <option value="dislikes">Dislikes</option>
+            <option value="comments">Comments</option>
+        </select>
+        <select th:field="*{sortOrder}">
+            <option value="asc">asc</option>
+            <option value="desc">desc</option>
+        </select>
+        <input type="submit" value="Search" th:class="buttonSave"/>
+    </form>
+    <br><br>
+    <table id="postTable" class="w3-table-all w3-bordered w3-striped w3-border test w3-hoverable">
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Content</th>
+            <th>Author</th>
+            <th>Tags</th>
+            <th>Comments</th>
+            <th>Days Old</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="post : ${posts}">
+            <td th:text="${post.title}">title</td>
+            <td th:text="${post.content}">content</td>
+            <td th:text="${post.author}">author</td>
+            <td th:text="${post.tagList}">tags</td>
+            <td th:text="${post.comments}">comments</td>
+            <td th:text="${post.days_old}">old</td>
+            <td class="w3-hover-red">
+                <a href="#" th:href="@{/posts/{id}/remove(id=${post.id})}"
+                   th:text="#{post.delete}">delete</a>
+            <td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<br>
+<br>
+<!--collapsible-->
+<button class="collapsible" th:class="collapsible" th:text="#{comments.filter.label}">Filter Options Comments</button>
+<div class="content" th:class="content">
+    <!--collapsible-->
+    <form class="center" th:class="center" id="commentsFilterForm" action="#" th:action="@{/admin-portal}" method="get" th:object="${filterComments}">
+        <input type="text" placeholder="post title" size="20" th:field="*{postTitle}"/>
+        <input type="text" placeholder="contains" size="20" th:field="*{content}"/>
+        <input type="text" placeholder="author" size="15" th:field="*{author}"/>
+        <select th:field="*{sortBy}">
+            <option value="content">Content</option>
+            <option value="order">Order</option>
+            <option value="user">Author</option>
+        </select>
+        <select th:field="*{sortOrder}">
+            <option value="asc">asc</option>
+            <option value="desc">desc</option>
+        </select>
+        <input type="submit" value="Search" th:class="buttonSave"/>
+    </form>
+    <br><br>
+    <table id="commentsTable" class="w3-table-all w3-bordered w3-striped w3-border test w3-hoverable">
+        <thead>
+        <tr>
+            <th>Post Title</th>
+            <th>Comments</th>
+            <th>Author</th>
+            <th>Created</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="comment : ${comments}">
+            <td th:text="${comment.postTitle}">post title</td>
+            <td th:text="${comment.content}">content</td>
+            <td th:text="${comment.author}">author</td>
+            <td th:text="${comment.created}">date</td>
+            <td class="w3-hover-red">
+                <a href="#" th:href="@{/posts/comments/{id}/delete(id=${comment.getCommentId()})}"
+                   th:text="#{comment.delete}" th:type="delete">delete</a>
+            <td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<br>
+<br>
+<!--collapsible-->
+<button class="collapsible" th:class="collapsible" th:text="#{tag.filter.label}">Filter Options Tags</button>
+<div class="content" th:class="content">
+    <!--collapsible-->
+    <form class="center" th:class="center" id="tagFilterForm" action="#" th:action="@{/admin-portal}" method="get" th:object="${filterComments}">
+        <input type="text" placeholder="tag...." size="20" th:field="*{content}"/>
+        <select th:field="*{sortBy}">
+            <option value="content">Content</option>
+            <option value="order">Order</option>
+        </select>
+        <select th:field="*{sortOrder}">
+            <option value="asc">asc</option>
+            <option value="desc">desc</option>
+        </select>
+        <input type="submit" value="Search" th:class="buttonSave"/>
+    </form>
+    <br><br>
+
+    <div th:class="container77" class="container77">
+        <div th:each="tag : ${tags}">
+            <div th:class="item77" class="item77">
+               <span>
+                <div class="text101" th:class="text101" th:text="${tag.content}">tag</div>
+               </span>
+                <span>
+                <a href="#" th:href="@{/posts/tags/{id}/delete(id=${tag.getID()})}">
+                  <img th:class="img77" class="img77" src="../static/assets/img/delete.jpg"
+                       th:src="@{/assets/img/delete.jpg}" alt="Delete"/>
+                </a>
+                 </span>
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<!-- ne triiiiii deeba -->
+<script>
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        });
+    }
+</script>
+<!-- ne triiiiii deeba -->
+<br>
+<br>
+<form th:color="green" th:class="center" class="center" action="#" th:action="@{/}" method="get">
+    <input class="w3-jumbo w3-animate-top w3-center" type="submit" value="Back to Home Page" th:class="buttonSave">
+</form>
+</body>
+</html>

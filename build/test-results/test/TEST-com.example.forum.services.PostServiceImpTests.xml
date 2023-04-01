@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.forum.services.PostServiceImpTests" tests="16" skipped="0" failures="0" errors="0" timestamp="2023-04-01T10:33:44" hostname="DESKTOP-3INN96D" time="0.154">
+  <properties/>
+  <testcase name="deletePost_CallRepository_when_UserAdmin()" classname="com.example.forum.services.PostServiceImpTests" time="0.06"/>
+  <testcase name="deletePost_CallRepository_when_UserCreator()" classname="com.example.forum.services.PostServiceImpTests" time="0.009"/>
+  <testcase name="createPost_Should_ThrowException_when_UserBlocked()" classname="com.example.forum.services.PostServiceImpTests" time="0.004"/>
+  <testcase name="getAllPosts_Should_CallRepository()" classname="com.example.forum.services.PostServiceImpTests" time="0.002"/>
+  <testcase name="updatePost_Should_ThrowException_when_UserBlocked()" classname="com.example.forum.services.PostServiceImpTests" time="0.005"/>
+  <testcase name="getTopCommentedPost_Should_CallRepository()" classname="com.example.forum.services.PostServiceImpTests" time="0.005"/>
+  <testcase name="getPost_Should_ReturnPost_When_MatchByIdExist()" classname="com.example.forum.services.PostServiceImpTests" time="0.005"/>
+  <testcase name="searchPost()" classname="com.example.forum.services.PostServiceImpTests" time="0.002"/>
+  <testcase name="deletePost_Should_ThrowException_when_UserBlocked()" classname="com.example.forum.services.PostServiceImpTests" time="0.003"/>
+  <testcase name="createPost_Should_Throw_When_PostWithTitleExists()" classname="com.example.forum.services.PostServiceImpTests" time="0.008"/>
+  <testcase name="deletePost_Should_ThrowException_when_UserIsNotAdminAndNotCreator()" classname="com.example.forum.services.PostServiceImpTests" time="0.007"/>
+  <testcase name="updatePost_Should_ThrowException_when_UserIsNotCreator()" classname="com.example.forum.services.PostServiceImpTests" time="0.003"/>
+  <testcase name="updatePost_CallRepository_when_UserCreator()" classname="com.example.forum.services.PostServiceImpTests" time="0.003"/>
+  <testcase name="getUserPost()" classname="com.example.forum.services.PostServiceImpTests" time="0.002"/>
+  <testcase name="getMostRecent()" classname="com.example.forum.services.PostServiceImpTests" time="0.005"/>
+  <testcase name="createPost_Should_CallRepository_when_UserNotBanned()" classname="com.example.forum.services.PostServiceImpTests" time="0.003"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

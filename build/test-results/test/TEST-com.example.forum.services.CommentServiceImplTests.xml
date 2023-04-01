@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.forum.services.CommentServiceImplTests" tests="15" skipped="0" failures="0" errors="0" timestamp="2023-04-01T10:33:43" hostname="DESKTOP-3INN96D" time="0.296">
+  <properties/>
+  <testcase name="deleteComment_Should_ThrowException_when_UserNotCreator()" classname="com.example.forum.services.CommentServiceImplTests" time="0.194"/>
+  <testcase name="createComment_Should_ThrowException_when_UserBlocked()" classname="com.example.forum.services.CommentServiceImplTests" time="0.005"/>
+  <testcase name="update_CallRepository_when_UserCreator()" classname="com.example.forum.services.CommentServiceImplTests" time="0.02"/>
+  <testcase name="update_Should_ThrowException_when_UserNotAuthor()" classname="com.example.forum.services.CommentServiceImplTests" time="0.003"/>
+  <testcase name="getCount_Should_CallRepository()" classname="com.example.forum.services.CommentServiceImplTests" time="0.006"/>
+  <testcase name="getComment_Should_CallRepository()" classname="com.example.forum.services.CommentServiceImplTests" time="0.003"/>
+  <testcase name="deleteComment_Should_ThrowException_when_UserBlocked()" classname="com.example.forum.services.CommentServiceImplTests" time="0.004"/>
+  <testcase name="getComments_Should_CallRepository()" classname="com.example.forum.services.CommentServiceImplTests" time="0.003"/>
+  <testcase name="checkModifyPermissions_Should_ThrowException_when_UserBlocked()" classname="com.example.forum.services.CommentServiceImplTests" time="0.003"/>
+  <testcase name="getCommentsByPostTitle_Should_CallRepository()" classname="com.example.forum.services.CommentServiceImplTests" time="0.002"/>
+  <testcase name="createComment_Should_CallRepository_when_UserNotBanned()" classname="com.example.forum.services.CommentServiceImplTests" time="0.002"/>
+  <testcase name="getCommentsByPostId_Should_CallRepository()" classname="com.example.forum.services.CommentServiceImplTests" time="0.003"/>
+  <testcase name="update_Should_ThrowException_when_UserBlocked()" classname="com.example.forum.services.CommentServiceImplTests" time="0.005"/>
+  <testcase name="deleteComment_CallRepository_when_UserCreator()" classname="com.example.forum.services.CommentServiceImplTests" time="0.003"/>
+  <testcase name="checkModifyPermissions_Should_ThrowException_when_UserNotAuthor()" classname="com.example.forum.services.CommentServiceImplTests" time="0.004"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

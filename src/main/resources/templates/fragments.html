@@ -1,0 +1,51 @@
+<div th:fragment="navbar">
+<nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+    <div class="container px-4 px-lg-5">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            Menu
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ms-auto py-4 py-lg-0">
+
+                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" th:href="@{/}" href="HomeView.html" th:text="#{home.home}">Home</a></li>
+                <li  th:if="${isAuthenticated}" class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="../../../../../the-forum-mine/src/main/resources/templates/PostsView.html"  th:href="@{/posts}" th:text="#{home.posts}">Posts</a></li>
+                <li  th:unless="${isAuthenticated}"  class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4"  href="LoginView.html" th:href="@{/auth/login}" th:text="#{home.login}">Login</a></li>
+                <li  th:unless="${isAuthenticated}"  class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4"  href="Register.html" th:href="@{/auth/register}" th:text="#{home.register}">Register</a></li>
+                <li th:if="${isAuthenticated and isAdmin}" class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="AdminPortal.html" th:href="@{/admin-portal}" th:text="#{admin.portal}">Admin Portal</a></li>
+                <li th:if="${isAuthenticated}" class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4"  href="EditUserView.html" th:href="@{/users/{id}/update(id=${userId})}" th:text="#{edit.profile}">Edit Profile</a></li>
+                <li th:if="${isAuthenticated}" class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4"  href="Logout.html" th:href="@{/auth/logout}" th:text="#{home.logout}">Logout</a></li>
+                <li  th:if="${isAuthenticated}" class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="NewPostView.html" th:href="@{/posts/new}" th:text="#{home.posts.new}" >New Post</a></li>
+                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="ContactView.html"  th:href="@{/message}" th:text="#{contact.page}">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+</div>
+
+<div th:fragment="head">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <meta name="description" content=""/>
+        <meta name="author" content=""/>
+        <title>bg-tati </title>
+
+        <link href="https://gitlab.com/group04lpha/the-forum/-/raw/main/src/main/resources/static/assets/favicon.ico"
+              rel="icon"
+              th:href="@{/assets/favicon.ico}"
+              type="image/x-icon">
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet"
+              type="text/css"/>
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
+              rel="stylesheet" type="text/css"/>
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="../static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+    </head>
+</div>
+
+

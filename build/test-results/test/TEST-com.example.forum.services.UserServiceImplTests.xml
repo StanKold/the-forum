@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.forum.services.UserServiceImplTests" tests="19" skipped="0" failures="0" errors="0" timestamp="2023-04-01T10:33:44" hostname="DESKTOP-3INN96D" time="0.234">
+  <properties/>
+  <testcase name="update_Should_CallRepository_when_EmailNotDuplicate()" classname="com.example.forum.services.UserServiceImplTests" time="0.072"/>
+  <testcase name="getAll_CallRepository()" classname="com.example.forum.services.UserServiceImplTests" time="0.002"/>
+  <testcase name="create_Should_ThrowException_when_UserExists()" classname="com.example.forum.services.UserServiceImplTests" time="0.008"/>
+  <testcase name="delete_Should_Throw_when_NotAuthorized()" classname="com.example.forum.services.UserServiceImplTests" time="0.007"/>
+  <testcase name="update_Should_ThrowException_when_NotAuthorized()" classname="com.example.forum.services.UserServiceImplTests" time="0.005"/>
+  <testcase name="getByID_CallRepository()" classname="com.example.forum.services.UserServiceImplTests" time="0.006"/>
+  <testcase name="getByUsername_CallRepository()" classname="com.example.forum.services.UserServiceImplTests" time="0.003"/>
+  <testcase name="update_Should_ThrowException_when_EmailDuplicate()" classname="com.example.forum.services.UserServiceImplTests" time="0.005"/>
+  <testcase name="getCount_CallRepository()" classname="com.example.forum.services.UserServiceImplTests" time="0.002"/>
+  <testcase name="create_Should_CallRepo_when_userNew()" classname="com.example.forum.services.UserServiceImplTests" time="0.003"/>
+  <testcase name="blockUser_Should_ThrowException_when_userNotAdmin()" classname="com.example.forum.services.UserServiceImplTests" time="0.006"/>
+  <testcase name="setAdmin_Should_CallRepository_when_userParametersValid()" classname="com.example.forum.services.UserServiceImplTests" time="0.003"/>
+  <testcase name="update_Should_ThrowException_when_UserNameChanged()" classname="com.example.forum.services.UserServiceImplTests" time="0.003"/>
+  <testcase name="setAdmin_Should_ThrowException_when_userNotAuthorized()" classname="com.example.forum.services.UserServiceImplTests" time="0.004"/>
+  <testcase name="blockUser_Should_CallRepository_when_ParametersValid()" classname="com.example.forum.services.UserServiceImplTests" time="0.005"/>
+  <testcase name="setAdmin_Should_ThrowException_when_userNotAdmin()" classname="com.example.forum.services.UserServiceImplTests" time="0.003"/>
+  <testcase name="create_Should_ThrowException_when_EmailExists()" classname="com.example.forum.services.UserServiceImplTests" time="0.019"/>
+  <testcase name="delete_Should_CallRepository_when_Authorized()" classname="com.example.forum.services.UserServiceImplTests" time="0.011"/>
+  <testcase name="blockUser_Should_ThrowException_when_SelfBlock()" classname="com.example.forum.services.UserServiceImplTests" time="0.008"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="~{fragments::head}">
+</div>
+<body>
+<!-- Navigation-->
+<div th:replace="~{fragments::navbar}">
+</div>
+<!-- Page Header-->
+<header class="masthead77"
+        style="background-image: url('https://gitlab.com/group04lpha/the-forum/-/raw/main/src/main/resources/static/assets/img/logo.jpg')">
+  <div class="container position-relative px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-7">
+        <div class="site-heading">
+          <h1>The Forum</h1>
+          <br>
+          <br>
+          <h2>Contact page</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<!-- Main Content-->
+<div class="container px-4 px-lg-5">
+  <div class="row gx-4 gx-lg-5 justify-content-center">
+    <div class="col-md-10 col-lg-8 col-xl-7">
+
+        <p class="center" th:class="center">Мessage to Almighty admin !</p>
+        <p class="center" th:class="center">Your message will be deleted as not important, unless you need one of our T-shirt's "bg-tati"</p>
+
+
+          <form enctype="multipart/form-data" action="#" th:action="@{/message}" th:object="${contact}" method="post">
+          <hr class="my-4"/>
+          <label th:text="#{users.label.name}">full name</label>
+          <br>
+          <input class="textarea10" type="text" placeholder="type..." th:field="*{contact_name}">
+          <label class="error" th:errors="*{contact_name}">name errors</label>
+          <hr class="my-4"/>
+
+            <label th:text="#{users.label.email}">e-mail</label>
+            <br>
+            <input  class="textarea10" type="text"  placeholder="type..." th:field="*{contact_email}">
+            <label class="error" th:errors="*{contact_email}">e-mail errors</label>
+            <hr class="my-4"/>
+
+            <label th:text="#{posts.label.Content}">content</label>
+            <br>
+            <textarea class="textarea11"  placeholder="type here..." th:field="*{contact_text}"></textarea>
+            <label class="error" th:errors="*{contact_text}">content errors</label>
+            <hr class="my-4"/>
+            <br>
+            <label th:if="${done}" th:text="#{message.accepted}">message accepted!</label>
+            <br>
+         <input class="buttonSave" th:class="buttonSave" type="submit" value="Send Message">
+
+
+          </form>
+        <br>
+        <h2>T-shirt "bg-tati", just must!</h2>
+        <img class="img-thumbnail" th:class="img-thumbnail" th:src="@{https://gitlab.com/group04lpha/the-forum/-/raw/main/src/main/resources/static/assets/img/t-shirt.jpg}" src="../static/assets/img/t-shirt.jpg" alt="t-shirt" style="width:auto;">
+        <h2>For orders, use the contact form and specify size !</h2>
+        <br>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer-->
+<footer class="border-top">
+  <div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-7">
+        <div class="small text-center text-muted fst-italic">Copyright &copy; bg-tati | The Forum | established
+          2023
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="/js/scripts.js"></script>
+</body>
+</html>
